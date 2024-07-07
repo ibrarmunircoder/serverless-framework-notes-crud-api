@@ -15,6 +15,7 @@ phases:
     commands:
       - echo Running Tests
       - npm run test
+      - export SERVERLESS_ACCESS_KEY=AKAHIwIo3G3plNUm8bSwTYRqImayBAeEoACBS81jo3c96
       - echo Packaging the service
       - serverless package --package my-artifact --stage dev
 artifacts:
