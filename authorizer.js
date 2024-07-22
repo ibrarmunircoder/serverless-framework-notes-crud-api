@@ -9,6 +9,21 @@ const jwtVerifier = CognitoJwtVerifier.create({
 });
 
 const generatePolicy = (principalId, effect, resource) => {
+  const temp = resource.split(':');
+  const apiGatewayArnTemp = temp[5].split('/');
+  const newResource =
+    temp[0] +
+    ':' +
+    temp[1] +
+    ':' +
+    temp[2] +
+    ':' +
+    temp[3] +
+    ':' +
+    temp[4] +
+    ':' +
+    apiGatewayArnTemp[0] +
+    '/*/*';
   var authReponse = {};
   authReponse.principalId = principalId;
   if (effect && resource) {
@@ -17,7 +32,7 @@ const generatePolicy = (principalId, effect, resource) => {
       Statement: [
         {
           Effect: effect,
-          Resource: resource,
+          Resource: newResource,
           Action: 'execute-api:Invoke',
         },
       ],

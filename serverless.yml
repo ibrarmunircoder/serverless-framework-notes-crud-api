@@ -5,7 +5,7 @@ service: notes-api
 provider:
   name: aws
   stage: ${opt:stage, 'dev'}
-  # profile: test-user
+  profile: test-user
   region: us-east-1
   runtime: nodejs20.x
   # iam:
